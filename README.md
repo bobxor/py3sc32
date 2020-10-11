@@ -2,10 +2,41 @@
 A Python3 Version of the pysc32 python3 module.  Communicate with your Lynxmotion SSC32 board with Python3!
 
 # Overview
-For convenient interfacing with the Lynxmotion SSC32 board, a python 2 module exists, here:
+This implementation is based on the Python 2 implemntation by Vladimir Ermakov.  I've used it for several projects to control the Lynxmotion SSC32 board.  However, it appears the project and source code are no longer being maintained.  See here:
 https://pypi.org/project/pyssc32/
 
-It looks like the original project is no longer active nor has Python 3 support.  I've made modifications and tested them to verify Python3 support for my projects.
+Python 3 support has been added with no obvious issues.
 
 # Installation
-For now, just copy the *.py files into your Site-Packages library folder under a folder called ssc32.
+Clone this repo and run the install within this folder with the command:
+```
+pip install .
+```
+
+# Usage
+Once installed, commands be used to driver the various servo channels.
+```
+import math
+from pyssc32 import ssc32
+
+# Windows Example
+ssc = ssc32.SSC32('COM8', 115200, count=32)
+
+# Linux Example
+ssc = ssc32.SSC32('/dev/ttyUSB0', 115200, count=32)
+
+ssc[2].position = 2000
+ssc[3].name = 'pan'
+ssc[4].name = 'tilt'
+pan_servo = ssc['pan']
+tilt_servo = ssc['tilt']
+pan_servo.degrees = 0
+tilt_servo.radians = math.pi/4
+ssc.commit(time=1000)
+ssc.is_done()
+False
+ssc.is_done()
+True
+ssc.description = 'My camera's pan/tilt'
+ssc.save_config('my_pantilt.cfg')
+```
