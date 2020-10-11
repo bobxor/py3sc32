@@ -1,4 +1,4 @@
-# py3sc32
+# py3ssc32
 A Python3 Version of the pysc32 python3 module.  Communicate with your Lynxmotion SSC32 board with Python3!
 
 # Overview
