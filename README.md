@@ -10,7 +10,8 @@ Python 3 support has been added with no obvious issues.
 # Installation
 Clone this repo and run the install within this folder with the command:
 ```
-pip install .
+sudo apt-get install python3-pip
+pip3 install .
 ```
 
 # Usage
